@@ -5,9 +5,9 @@
       <button>Button</button>
     </form>
     <hr />
-    <select v-model="showType">
-      <option value="all">タスクをすべて表示</option>
-      <option value="exceptDone">完了済みのタスクを表示しない</option>
+    <select v-model="showAll">
+      <option :value="true">タスクをすべて表示</option>
+      <option :value="false">完了済みのタスクを表示しない</option>
     </select>
     <div class="task-list" v-for="task in taskList" :key="task.name">
       <label v-if="isShow(task.done)" class="task-list__item">
@@ -15,9 +15,7 @@
         {{ task.name }}
       </label>
     </div>
-    <p class="task-numbetr" v-cloak>
-      {{ getUncompletedNum() }}/{{ taskList.length }}
-    </p>
+    <p class="task-count" v-cloak>{{ showTaskCount }}/{{ taskList.length }}</p>
     <pre>{{ $data }}</pre>
   </div>
 </template>
@@ -34,16 +32,30 @@ export default Vue.extend({
     return {
       taskList: [],
       newTask: "",
-      showType: "all"
+      showAll: true
     } as {
       taskList: Task[];
       newTask: string;
-      showType: string;
+      showAll: boolean;
     };
   },
-  //   created() {
-  //       this.taskList.length = 0;
-  //   },
+  computed: {
+    showTaskCount(): number {
+      if (this.showAll) {
+        return this.taskList.length;
+      }
+      return this.getunfinishedNum;
+    },
+    getunfinishedNum(): number {
+      let unfinishedTasks = [];
+      for (const task of this.taskList) {
+        if (!task.done) {
+          unfinishedTasks.push(task);
+        }
+      }
+      return unfinishedTasks.length;
+    }
+  },
   methods: {
     addTask(): void {
       let text = this.newTask.trim();
@@ -57,19 +69,7 @@ export default Vue.extend({
       this.newTask = "";
     },
     isShow(done: boolean): boolean {
-      return (
-        this.showType === "all" ||
-        (this.showType === "exceptCompleted" && !done)
-      );
-    },
-    getUncompletedNum(): number {
-      let unCompletedTask = [];
-      for (const task of this.taskList) {
-        if (!task.done) {
-          unCompletedTask.push(task);
-        }
-      }
-      return unCompletedTask.length;
+      return this.showAll || (!this.showAll && !done);
     }
   }
 });
@@ -82,7 +82,7 @@ export default Vue.extend({
 .task-list {
   @include flex-vender;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   &__item {
     width: 270px;
     text-align: left;
