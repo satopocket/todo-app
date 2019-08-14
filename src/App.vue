@@ -1,21 +1,30 @@
 <template>
   <div id="app">
     <form @submit.prevent="addTask()">
-      <input type="text" v-model="newTask" />
-      <button>Button</button>
+      <input type="text" v-model="newTask" placeholder="タスク" class="input" />
+      <button class="button">Button</button>
     </form>
     <hr />
-    <select v-model="isShownAllTask">
+    <select v-model="isShownAllTask" class="select-box">
       <option :value="true">タスクをすべて表示</option>
       <option :value="false">完了済みのタスクを表示しない</option>
     </select>
-    <div class="task-list" v-for="task in taskList" :key="task.name">
-      <label v-if="isShow(task.done)" class="task-list__item">
-        <input type="checkbox" v-model="task.done" />
-        {{ task.name }}
-      </label>
+    <div class="task-list">
+      <template v-for="task in taskList">
+        <label
+          v-if="isShow(task.done)"
+          class="task-list__item"
+          :key="task.name"
+        >
+          <input type="checkbox" v-model="task.done" />
+          {{ task.name }}
+          <br />
+        </label>
+      </template>
+      <p class="task-count" v-cloak>
+        {{ showTaskCount }}/{{ taskList.length }}
+      </p>
     </div>
-    <p class="task-count" v-cloak>{{ showTaskCount }}/{{ taskList.length }}</p>
     <pre>{{ $data }}</pre>
   </div>
 </template>
@@ -71,24 +80,44 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@mixin flex-vender() {
-  display: flex;
-}
-.task-list {
-  @include flex-vender;
-  flex-direction: column;
-  align-items: left;
-  &__item {
-    width: 270px;
-    text-align: left;
-    $element: #{&};
-    &--checked {
-      @extend #{$element};
-      color: #85a6c6;
-    }
-  }
-}
 [v-cloak] {
   display: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: 0.4s;
+  margin: 40px 0px 10px 20px;
+
+  &:hover {
+    background: #67c5ff;
+    color: white;
+  }
+}
+
+.input {
+  border: 1px solid;
+  margin: 40px 0px 10px 10px;
+}
+
+.select-box {
+  position: absolute;
+  top: 110px;
+  left: 250px;
+}
+
+.task-list {
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.task-count {
+  margin-top: 40px;
+  margin-left: 370px;
 }
 </style>
