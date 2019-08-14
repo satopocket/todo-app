@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <form v-on:submit.prevent="addTask()">
+    <form @submit.prevent="addTask()">
       <input type="text" v-model="newTask" />
       <button>Button</button>
     </form>
     <hr />
-    <select v-model="showAll">
+    <select v-model="isShownAllTask">
       <option :value="true">タスクをすべて表示</option>
       <option :value="false">完了済みのタスクを表示しない</option>
     </select>
@@ -32,27 +32,22 @@ export default Vue.extend({
     return {
       taskList: [],
       newTask: "",
-      showAll: true
+      isShownAllTask: true
     } as {
       taskList: Task[];
       newTask: string;
-      showAll: boolean;
+      isShownAllTask: boolean;
     };
   },
   computed: {
     showTaskCount(): number {
-      if (this.showAll) {
+      if (this.isShownAllTask) {
         return this.taskList.length;
       }
       return this.getunfinishedNum;
     },
     getunfinishedNum(): number {
-      let unfinishedTasks = [];
-      for (const task of this.taskList) {
-        if (!task.done) {
-          unfinishedTasks.push(task);
-        }
-      }
+      const unfinishedTasks = this.taskList.filter(task => !task.done);
       return unfinishedTasks.length;
     }
   },
@@ -69,7 +64,7 @@ export default Vue.extend({
       this.newTask = "";
     },
     isShow(done: boolean): boolean {
-      return this.showAll || (!this.showAll && !done);
+      return this.isShownAllTask || (!this.isShownAllTask && !done);
     }
   }
 });
@@ -92,5 +87,8 @@ export default Vue.extend({
       color: #85a6c6;
     }
   }
+}
+[v-cloak] {
+  display: none;
 }
 </style>
