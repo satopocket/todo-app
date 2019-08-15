@@ -6,6 +6,10 @@
 import Vue, { PropType } from "vue";
 export default Vue.extend({
   name: "TextForm",
+  model: {
+    prop: "newTask",
+    event: "input"
+  },
   props: {
     newTask: {
       type: String as PropType<string>,

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TextForm v-model="newTask" :newTask="newTask" />
+    <TextForm v-model="newTask" />
     <AddTaskButton @add-task="addTask" />
     <hr />
     <TaskList :taskList="taskList" />
