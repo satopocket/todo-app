@@ -1,5 +1,5 @@
 <template>
-  <input type="text" v-model="newTask" placeholder="タスク" class="input" />
+  <input v-model="inputValue" type="text" placeholder="タスク" class="input" />
 </template>
 
 <script lang="ts">
@@ -13,9 +13,14 @@ export default Vue.extend({
       required: true
     }
   },
-  watch: {
-    newTask(val, oldval) {
-      this.$emit("input-new", val);
+  computed: {
+    inputValue: {
+      get(): string {
+        return this.newTask;
+      },
+      set(newVal: string) {
+        if (this.newTask !== newVal) this.$emit("input", newVal);
+      }
     }
   }
 });

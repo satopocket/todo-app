@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <TextForm @input-new="inputNewTask" :newTask="newTask" />
-    <Button @add-task="addTask" />
+    <TextForm v-model="newTask" :newTask="newTask" />
+    <AddTaskButton @add-task="addTask" />
     <hr />
-    <TaskList
-      @change-show-mode="changeShowMode"
-      :taskList="taskList"
-      :isShownAllTask="isShownAllTask"
-    />
+    <TaskList :taskList="taskList" />
   </div>
 </template>
 
 <script lang="ts">
 import { default as TextForm } from "@/components/TextForm.vue";
-import { default as Button } from "@/components/Button.vue";
+import { default as AddTaskButton } from "@/components/AddTaskButton.vue";
 import { default as TaskList } from "@/components/TaskList.vue";
 
 import Vue, { PropOptions } from "vue";
@@ -25,24 +21,19 @@ export default Vue.extend({
   name: "App",
   components: {
     TextForm,
-    Button,
+    AddTaskButton,
     TaskList
   },
   data() {
     return {
       taskList: [],
-      newTask: "",
-      isShownAllTask: true
+      newTask: ""
     } as {
       taskList: Task[];
       newTask: string;
-      isShownAllTask: boolean;
     };
   },
   methods: {
-    inputNewTask(task: string) {
-      this.newTask = task;
-    },
     addTask(): void {
       let text = this.newTask.trim();
       if (!text) {
@@ -53,9 +44,6 @@ export default Vue.extend({
         done: false
       });
       this.newTask = "";
-    },
-    changeShowMode(mode: boolean) {
-      this.isShownAllTask = mode;
     }
   }
 });

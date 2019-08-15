@@ -1,15 +1,11 @@
 <template>
-  <button @click.prevent="addTask()" class="button">Button</button>
+  <button @click="addTask()" class="button">Button</button>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-interface Task {
-  name: string;
-  done: boolean;
-}
 export default Vue.extend({
-  name: "Button",
+  name: "AddTaskButton",
   methods: {
     addTask(): void {
       this.$emit("add-task");

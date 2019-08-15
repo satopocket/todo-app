@@ -31,15 +31,17 @@ interface Task {
 }
 export default Vue.extend({
   name: "TaskList",
+  data() {
+    return {
+      isShownAllTask: true
+    } as {
+      isShownAllTask: boolean;
+    };
+  },
   props: {
     taskList: {
       type: Array as PropType<Task[]>,
       default: () => [],
-      required: true
-    },
-    isShownAllTask: {
-      type: Boolean as PropType<boolean>,
-      default: false,
       required: true
     }
   },
@@ -58,11 +60,6 @@ export default Vue.extend({
   methods: {
     isShow(done: boolean): boolean {
       return this.isShownAllTask || (!this.isShownAllTask && !done);
-    }
-  },
-  watch: {
-    isShownAllTask(val, oldval) {
-      this.$emit("change-show-mode", val);
     }
   }
 });
