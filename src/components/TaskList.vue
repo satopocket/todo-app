@@ -25,10 +25,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-interface Task {
-  name: string;
-  done: boolean;
-}
+import { Task } from "./types";
 export default Vue.extend({
   name: "TaskList",
   data() {
@@ -50,9 +47,9 @@ export default Vue.extend({
       if (this.isShownAllTask) {
         return this.taskList.length;
       }
-      return this.getunfinishedNum;
+      return this.getUnfinishedNum;
     },
-    getunfinishedNum(): number {
+    getUnfinishedNum(): number {
       const unfinishedTasks = this.taskList.filter(task => !task.done);
       return unfinishedTasks.length;
     }

@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskList.vue snapshot タスク1つ 1`] = `
+<div>
+  <select
+    class="select-box"
+  >
+    <option
+      value="true"
+    >
+      タスクをすべて表示
+    </option>
+     
+    <option
+      value="false"
+    >
+      完了済みのタスクを表示しない
+    </option>
+  </select>
+   
+  <div
+    class="task-list"
+  >
+    <label
+      class="task-list__item"
+    >
+      <input
+        type="checkbox"
+      />
+      
+        task1
+        
+      <br />
+    </label>
+     
+    <p
+      class="task-count"
+    >
+      
+      1/1
+    
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TaskList.vue snapshot タスク2つ 1`] = `
+<div>
+  <select
+    class="select-box"
+  >
+    <option
+      value="true"
+    >
+      タスクをすべて表示
+    </option>
+     
+    <option
+      value="false"
+    >
+      完了済みのタスクを表示しない
+    </option>
+  </select>
+   
+  <div
+    class="task-list"
+  >
+    <label
+      class="task-list__item"
+    >
+      <input
+        type="checkbox"
+      />
+      
+        task1
+        
+      <br />
+    </label>
+    <label
+      class="task-list__item"
+    >
+      <input
+        type="checkbox"
+      />
+      
+        task2
+        
+      <br />
+    </label>
+     
+    <p
+      class="task-count"
+    >
+      
+      2/2
+    
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TaskList.vue snapshot タスク2つ中1つ完了 1`] = `
+<div>
+  <select
+    class="select-box"
+  >
+    <option
+      value="true"
+    >
+      タスクをすべて表示
+    </option>
+     
+    <option
+      value="false"
+    >
+      完了済みのタスクを表示しない
+    </option>
+  </select>
+   
+  <div
+    class="task-list"
+  >
+    <label
+      class="task-list__item"
+    >
+      <input
+        type="checkbox"
+      />
+      
+        task1
+        
+      <br />
+    </label>
+    <label
+      class="task-list__item"
+    >
+      <input
+        type="checkbox"
+      />
+      
+        task2
+        
+      <br />
+    </label>
+     
+    <p
+      class="task-count"
+    >
+      
+      2/2
+    
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TaskList.vue snapshot タスクなし 1`] = `
+<div>
+  <select
+    class="select-box"
+  >
+    <option
+      value="true"
+    >
+      タスクをすべて表示
+    </option>
+     
+    <option
+      value="false"
+    >
+      完了済みのタスクを表示しない
+    </option>
+  </select>
+   
+  <div
+    class="task-list"
+  >
+     
+    <p
+      class="task-count"
+    >
+      
+      0/0
+    
+    </p>
+  </div>
+</div>
+`;

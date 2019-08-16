@@ -13,8 +13,7 @@ export default Vue.extend({
   props: {
     newTask: {
       type: String as PropType<string>,
-      default: "",
-      required: true
+      default: ""
     }
   },
   computed: {
