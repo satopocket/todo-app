@@ -8,6 +8,7 @@ describe("App.vue", () => {
     wm.newTask = "   ";
     wm.addTask();
     expect(wm.taskList).toEqual([]);
+    expect(wm.newTask).toEqual("");
   });
   test("addTask(not空文字)", () => {
     const wrapper = shallowMount(App);
@@ -15,5 +16,6 @@ describe("App.vue", () => {
     wm.newTask = "task";
     wm.addTask();
     expect(wm.taskList).toEqual([{ name: "task", done: false }]);
+    expect(wm.newTask).toEqual("");
   });
 });
