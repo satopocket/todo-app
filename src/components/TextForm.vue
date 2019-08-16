@@ -1,5 +1,5 @@
 <template>
-  <input v-model="inputValue" type="text" placeholder="タスク" class="input" />
+  <input v-model="newTask" type="text" placeholder="タスク" class="input" />
 </template>
 
 <script lang="ts">
@@ -10,19 +10,13 @@ export default Vue.extend({
     prop: "newTask",
     event: "input"
   },
-  props: {
-    newTask: {
-      type: String as PropType<string>,
-      default: ""
-    }
-  },
   computed: {
-    inputValue: {
+    newTask: {
       get(): string {
-        return this.newTask;
+        return this.$store.getters.newTask;
       },
-      set(newVal: string) {
-        if (this.newTask !== newVal) this.$emit("input", newVal);
+      set(value: string) {
+        this.$store.commit("setNewTask", value);
       }
     }
   }

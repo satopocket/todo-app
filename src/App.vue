@@ -21,26 +21,19 @@ export default Vue.extend({
     AddTaskButton,
     TaskList
   },
-  data() {
-    return {
-      taskList: [],
-      newTask: ""
-    } as {
-      taskList: Task[];
-      newTask: string;
-    };
+  computed: {
+    newTask(): string {
+      return this.$store.getters.newTask;
+    },
+    taskList(): Task[] {
+      return this.$store.getters.taskList;
+    }
   },
   methods: {
     addTask(): void {
-      let text = this.newTask.trim();
-      if (!text) {
-        return;
-      }
-      this.taskList.push({
-        name: text,
-        done: false
-      });
-      this.newTask = "";
+      const task = { name: this.newTask, done: false };
+      this.$store.commit("setTaskList", task);
+      this.$store.commit("setNewTask", "");
     }
   }
 });
