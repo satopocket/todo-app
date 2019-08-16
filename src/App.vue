@@ -13,10 +13,7 @@ import { default as AddTaskButton } from "@/components/AddTaskButton.vue";
 import { default as TaskList } from "@/components/TaskList.vue";
 
 import Vue, { PropOptions } from "vue";
-interface Task {
-  name: string;
-  done: boolean;
-}
+import { Task } from "@/components/types";
 export default Vue.extend({
   name: "App",
   components: {
