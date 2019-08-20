@@ -5,7 +5,7 @@ import { Task } from "@/components/types";
 
 Vue.use(Vuex);
 
-const store: any = new Vuex.Store({
+export default new Vuex.Store({
   // strict: true,
   state: {
     newTask: "" as string,
@@ -32,4 +32,3 @@ const store: any = new Vuex.Store({
     }
   }
 });
-export default store;
