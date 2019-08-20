@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue from "vue";
+import { PropType } from "vue";
 import { Task } from "./types";
 export default Vue.extend({
   name: "TaskList",
