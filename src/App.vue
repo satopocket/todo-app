@@ -8,11 +8,10 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import { default as TextForm } from "@/components/TextForm.vue";
 import { default as AddTaskButton } from "@/components/AddTaskButton.vue";
 import { default as TaskList } from "@/components/TaskList.vue";
-
-import Vue, { PropOptions } from "vue";
 import { Task } from "@/components/types";
 export default Vue.extend({
   name: "App",
@@ -22,18 +21,28 @@ export default Vue.extend({
     TaskList
   },
   computed: {
-    newTask(): string {
-      return this.$store.getters.newTask;
+    newTask: {
+      get(): string {
+        return this.$store.getters.newTask;
+      },
+      set(value: string): void {
+        this.$store.commit("setNewTask", value);
+      }
     },
-    taskList(): Task[] {
-      return this.$store.getters.taskList;
+    taskList: {
+      get(): string {
+        return this.$store.getters.taskList;
+      },
+      set(task: Task): void {
+        this.$store.commit("setTaskList", task);
+      }
     }
   },
   methods: {
     addTask(): void {
       const task = { name: this.newTask, done: false };
-      this.$store.commit("setTaskList", task);
-      this.$store.commit("setNewTask", "");
+      this.taskList = task;
+      this.newTask = "";
     }
   }
 });
